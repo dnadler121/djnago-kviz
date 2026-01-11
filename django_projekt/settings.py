@@ -32,11 +32,12 @@ if not SECRET_KEY:
     raise RuntimeError("DJANGO_SECRET_KEY is missing")
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "django-kviz.onrender.com", ".onrender.com"]
-
-_env_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", "")
-if _env_hosts.strip():
-    ALLOWED_HOSTS = [h.strip() for h in _env_hosts.split(",") if h.strip()]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "djnago-kviz.onrender.com",  # ✅ skutečná render URL
+    ".onrender.com",
+]
 
 # Application definition
 
@@ -134,6 +135,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 
