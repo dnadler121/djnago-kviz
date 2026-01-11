@@ -5,3 +5,8 @@ packaging==25.0
 python-dotenv==1.2.1
 sqlparse==0.5.5
 typing_extensions==4.15.0
+django
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
