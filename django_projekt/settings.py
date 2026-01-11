@@ -14,6 +14,9 @@ import os
 from pathlib import Path
 import dj_database_url
 
+print("### SETTINGS LOADED: OK ###")
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -126,6 +129,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 
