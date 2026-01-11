@@ -24,12 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
 
-_allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS")
-if _allowed_hosts:
-    ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts.split(",") if h.strip()]
-else:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "django-kviz.onrender.com", ".onrender.com"]
 
+_env_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", "")
+if _env_hosts.strip():
+    ALLOWED_HOSTS = [h.strip() for h in _env_hosts.split(",") if h.strip()]
 
 # Application definition
 
@@ -127,6 +126,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 
