@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Výsledky</title>
+  <link rel="stylesheet" href="{% static 'css/kviz.css' %}">
+</head>
+<body>
+<main class="wrap">
+  <section class="card">
+    <header class="card__header">
+      <h1>Výsledky kvízu</h1>
+      <p>Uložené výsledky (jméno + skóre)</p>
+    </header>
+
+    <div class="quiz">
+      {% if posledni %}
+        <div class="result">
+          <p class="result__pick">
+            Poslední výsledek: <strong>{{ posledni.jmeno }}</strong> — <strong>{{ posledni.skore }}/{{ posledni.max_skore }}</strong>
+          </p>
+        </div>
+      {% endif %}
+
+      <div class="actions" style="gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="{% url 'kviz' %}" style="text-decoration:none; display:inline-block;">Zpět na kvíz</a>
+
+        <form method="post" action="{% url 'vymazat_vysledky' %}">
+          {% csrf_token %}
+          <button class="btn" style="background:#b91c1c;">Vymazat všechny záznamy</button>
+        </form>
+      </div>
+
+      <div style="margin-top:16px;">
+        {% for z in zaznamy %}
+          <div class="q">
+            <strong>{{ z.jmeno }}</strong> — {{ z.skore }}/{{ z.max_skore }}
+            <div style="color:#6b7280; font-size: 14px;">
+              {{ z.created_at }}
+            </div>
+
+            <details style="margin-top:8px;">
+              <summary>Detail odpovědí</summary>
+              <pre style="white-space:pre-wrap; margin-top:8px;">{{ z.detail }}</pre>
+            </details>
+          </div>
+        {% empty %}
+          <div class="result">
+            <p class="result__info">Zatím tu není žádný záznam.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

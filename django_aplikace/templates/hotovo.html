@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Výsledek</title>
+  <link rel="stylesheet" href="{% static 'css/kviz.css' %}">
+</head>
+<body>
+<main class="wrap">
+  <section class="card">
+    <header class="card__header">
+      <h1>Výsledek ✅</h1>
+      <p>Tvoje odpovědi byly odeslány.</p>
+    </header>
+
+    {% if vysledek %}
+      <div class="quiz">
+        <div class="result">
+          <p class="result__pick">
+            Žák: <strong>{{ vysledek.jmeno }}</strong><br>
+            Skóre: <strong>{{ vysledek.skore }}/{{ vysledek.max_skore }}</strong>
+          </p>
+        </div>
+
+        <details style="margin-top:12px;">
+          <summary>Detail odpovědí</summary>
+          <pre style="white-space:pre-wrap; margin-top:8px;">{{ vysledek.detail }}</pre>
+        </details>
+      </div>
+    {% else %}
+      <p style="padding: 16px;">Výsledek už není k dispozici (nebo byl test otevřen přímo).</p>
+    {% endif %}
+
+  </section>
+</main>
+</body>
+</html>

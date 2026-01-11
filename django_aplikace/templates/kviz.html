@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kvíz – zvířata</title>
+  <link rel="stylesheet" href="{% static 'css/kviz.css' %}">
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <header class="card__header">
+        <h1>Kvíz – zvířata</h1>
+        {% if jmeno %}
+          <p>Žák: <strong>{{ jmeno }}</strong></p>
+        {% endif %}
+      </header>
+
+      <form method="post" class="quiz">
+        {% csrf_token %}
+
+        {% for o in otazky %}
+          <fieldset class="q">
+            <legend>{{ o.id }}) {{ o.text }}</legend>
+
+            {% for k, txt in o.moznosti.items %}
+              <label class="opt">
+                <input
+                  type="radio"
+                  name="q{{ o.id }}"
+                  value="{{ k }}"
+                  {% if forloop.first %}required{% endif %}
+                >
+                {{ k }}) {{ txt }}
+              </label>
+            {% endfor %}
+          </fieldset>
+        {% endfor %}
+
+        <!-- ✅ TLAČÍTKO JE JEN JEDNO A JE MIMO SMYČKU -->
+        <div class="actions">
+          <button type="submit" class="btn">Odeslat kvíz</button>
+        </div>
+
+        {% if chyba %}
+          <div class="result">
+            <p class="bad">{{ chyba }}</p>
+          </div>
+        {% endif %}
+      </form>
+
+    </section>
+  </main>
+</body>
+</html>

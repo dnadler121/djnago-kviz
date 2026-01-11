@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Učitel – přihlášení</title>
+  <link rel="stylesheet" href="{% static 'css/kviz.css' %}">
+</head>
+<body>
+<main class="wrap">
+  <section class="card">
+    <header class="card__header">
+      <h1>Učitel – přihlášení</h1>
+      <p>Zadej heslo pro vstup do výsledků.</p>
+    </header>
+
+    <form method="post" class="quiz">
+      {% csrf_token %}
+      <fieldset class="q">
+        <legend>Heslo</legend>
+        <label class="opt" style="cursor: default;">
+          <input style="display:none">
+          <input type="password" name="heslo" required
+                 style="width:100%; padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
+        </label>
+      </fieldset>
+
+      <div class="actions">
+        <button class="btn">Přihlásit</button>
+      </div>
+
+      {% if chyba %}
+        <div class="result">
+          <p class="bad">{{ chyba }}</p>
+        </div>
+      {% endif %}
+    </form>
+  </section>
+</main>
+</body>
+</html>

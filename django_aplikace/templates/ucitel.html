@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Učitel – výsledky</title>
+  <link rel="stylesheet" href="{% static 'css/kviz.css' %}">
+</head>
+<body>
+<main class="wrap">
+  <section class="card">
+    <header class="card__header">
+      <h1>Výsledky žáků</h1>
+      <p>Uložené výsledky v databázi</p>
+    </header>
+
+    <div class="quiz">
+      <form method="post" action="{% url 'vymazat_vysledky' %}">
+        {% csrf_token %}
+        <div class="actions">
+          <button class="btn" style="background:#b91c1c;">Vymazat všechny výsledky</button>
+        </div>
+      </form>
+
+      {% for z in zaznamy %}
+        <div class="q">
+          <strong>{{ z.jmeno }}</strong> — {{ z.skore }}/{{ z.max_skore }}
+          <div style="color:#6b7280; font-size: 14px;">{{ z.created_at }}</div>
+
+          <details style="margin-top:8px;">
+            <summary>Detail odpovědí</summary>
+            <pre style="white-space:pre-wrap; margin-top:8px;">{{ z.detail }}</pre>
+          </details>
+        </div>
+      {% empty %}
+        <div class="result">
+          <p class="result__info">Zatím tu nejsou žádné výsledky.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+</body>
+</html>

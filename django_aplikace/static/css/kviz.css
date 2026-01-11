@@ -1,0 +1,113 @@
+:root{
+  --bg: #f3f6fb;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --green: #138a1a;
+  --green2:#0f6f14;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:28px 16px;
+}
+
+.card{
+  width:min(760px, 100%);
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+
+.card__header{
+  padding:20px 22px 10px;
+  text-align:center;
+}
+.card__header h1{
+  margin:6px 0 8px;
+  font-size:34px;
+}
+.card__header p{
+  margin:0 0 6px;
+  color:var(--muted);
+}
+
+.quiz{ padding:10px 22px 22px; }
+
+.q{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 14px 10px;
+  margin:12px 0;
+  background:#fafafa;
+}
+.q legend{
+  font-weight:800;
+  padding:0 6px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.opt:hover{ background:#eef2ff; }
+
+.actions{
+  display:flex;
+  justify-content:center;
+  margin-top:16px;
+}
+
+.btn{
+  background:var(--green);
+  color:#fff;
+  border:none;
+  padding:12px 30px;
+  border-radius:12px;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(19,138,26,.22);
+}
+.btn:hover{ background:var(--green2); }
+
+.result{
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#fff;
+  text-align:center;
+}
+.result__pick{ margin:0 0 8px; color:var(--muted); }
+.result__ok{ margin:0; color:var(--green); font-weight:900; }
+.result__info{ margin:0; color:var(--muted); font-weight:700; }
+
+.mini{
+  margin-top:10px;
+  padding:10px;
+  border-radius:12px;
+  background:#fff;
+  border:1px dashed var(--border);
+}
+.ok{ color:var(--green); font-weight:900; }
+.bad{ color:#b91c1c; font-weight:900; }
+.hint{ margin-left:10px; color:var(--muted); font-weight:700; }
